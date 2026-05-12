@@ -1,5 +1,17 @@
 import os
+import sys
 
-# Limpa qualquer processo anterior e inicia o Streamlit na porta 8080
-if __name__ == "__main__":
-    os.system("python -m streamlit run app.py --server.port 8080 --server.address 0.0.0.0")
+# Define o comando para rodar o streamlit
+cmd = "streamlit"
+args = [
+    "streamlit", "run", "app.py",
+    "--server.port", "8080",
+    "--server.address", "0.0.0.0",
+    "--server.headless", "true"
+]
+
+print("🚀 Iniciando a IA Edson Omni...")
+
+# O execvp substitui o processo atual pelo processo do streamlit.
+# Isso evita que o processo do python original fique "travando" a Discloud.
+os.execvp(cmd, args)
